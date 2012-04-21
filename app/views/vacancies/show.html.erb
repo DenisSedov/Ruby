@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fullname:</b>
+  <%= @vacancy.fullname %>
+</p>
+
+<p>
+  <b>Addingdate:</b>
+  <%= @vacancy.addingdate %>
+</p>
+
+<p>
+  <b>Validperiod:</b>
+  <%= @vacancy.validperiod %>
+</p>
+
+<p>
+  <b>Salary:</b>
+  <%= @vacancy.salary %>
+</p>
+
+<p>
+  <b>Contactinfo:</b>
+  <%= @vacancy.contactinfo %>
+</p>
+
+<p>
+  <b>Desirableskill:</b>
+  <%= @vacancy.desirableskill %>
+</p>
+
+
+<%= link_to 'Edit', edit_vacancy_path(@vacancy) %> |
+<%= link_to 'Back', vacancies_path %>
