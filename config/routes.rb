@@ -4,6 +4,7 @@ PersonnelAgency::Application.routes.draw do
   get "pages/contact"
   get "users/new"
   
+  
   match '/home',   :to => 'pages#home'
   root_path = '/home'
   
@@ -12,6 +13,9 @@ PersonnelAgency::Application.routes.draw do
   
   match '/signup', :to => 'users#new'
   signup_path = '/signup'
+  
+  workers_path = '/workers'
+  vacancies_path = '/vacancies'
   
 
   root :to => 'pages#home'
@@ -22,5 +26,6 @@ PersonnelAgency::Application.routes.draw do
   resources :contactinformations
   resources :workers
   resources :vacancies
+  resources :users
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421061111) do
+ActiveRecord::Schema.define(:version => 20120422070146) do
 
   create_table "contactinformations", :force => true do |t|
     t.string   "telephone"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(:version => 20120421061111) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "pas"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "users", ["name"], :name => "index_users_on_name", :unique => true
 
   create_table "vacancies", :force => true do |t|
     t.string   "fullname"
