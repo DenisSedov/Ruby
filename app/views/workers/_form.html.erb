@@ -1,8 +1,8 @@
-<%= form_for(@worker) do |f| %>
+
+<%= form_for(@worker) do |worker_form| %>
   <% if @worker.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@worker.errors.count, "error") %> prohibited this worker from being saved:</h2>
-
       <ul>
       <% @worker.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,36 +10,43 @@
       </ul>
     </div>
   <% end %>
+  <select fullname="worker[status_id]">
+    <% @statuses.each do |status| %>
+      <option value="<%= status.id %>"
+        <%= 'selected' if status.id == @worker.status_id %>>
+        <%= status.fullname %>
+      </option>
+    <% end %>
+  </select>
+
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= worker_form.label :name %><br />
+    <%= worker_form.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :fname %><br />
-    <%= f.text_field :fname %>
+    <%= worker_form.label :fname %><br />
+    <%= worker_form.text_field :fname %>
   </div>
   <div class="field">
-    <%= f.label :oname %><br />
-    <%= f.text_field :oname %>
+    <%= worker_form.label :oname %><br />
+    <%= worker_form.text_field :oname %>
   </div>
   <div class="field">
-    <%= f.label :contactinfo %><br />
-    <%= f.number_field :contactinfo %>
+    <%= worker_form.label :desiralesalary %><br />
+    <%= worker_form.text_field :desiralesalary %>
   </div>
   <div class="field">
-    <%= f.label :status %><br />
-    <%= f.number_field :status %>
+    <%= worker_form.label :skill %><br />
+    <%= worker_form.number_field :skill %>
   </div>
-  <div class="field">
-    <%= f.label :desiralesalary %><br />
-    <%= f.text_field :desiralesalary %>
+  <h1> Контактная информация </h1>
+  <div id="contactinformations">
+    <%= render :partial => "contactinformations/form", :locals => {:contactinformation => :contactinformation}  %>  
   </div>
-  <div class="field">
-    <%= f.label :skill %><br />
-    <%= f.number_field :skill %>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= worker_form.submit "Сохранить" %>
   </div>
+
 <% end %>

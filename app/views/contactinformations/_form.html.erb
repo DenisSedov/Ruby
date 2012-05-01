@@ -1,8 +1,7 @@
-<%= form_for(@contactinformation) do |f| %>
+<%= form_for(contactinformation) do |contactinfo_form| %>
   <% if @contactinformation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@contactinformation.errors.count, "error") %> prohibited this contactinformation from being saved:</h2>
-
+      <h2><%= pluralize(@contactinformation.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
       <ul>
       <% @contactinformation.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,14 +11,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :telephone %><br />
-    <%= f.text_field :telephone %>
+    <%= contactinfo_form.label :"Телефон" %><br />
+    <%= contactinfo_form.text_field :telephone %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <%= contactinfo_form.label :"E-mail" %><br />
+    <%= contactinfo_form.email_field :email %>
   </div>
 <% end %>

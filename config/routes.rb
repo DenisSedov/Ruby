@@ -2,7 +2,8 @@ PersonnelAgency::Application.routes.draw do
 
   get "pages/home" 
   get "pages/contact"
-  get "users/new"
+  get "workers/vacancy_for_workers" 
+  #get "users/new"
   
   
   match '/home',   :to => 'pages#home'
@@ -17,6 +18,8 @@ PersonnelAgency::Application.routes.draw do
   workers_path = '/workers'
   vacancies_path = '/vacancies'
   
+  match '/vacancyworkers', :to => 'workers#vacancy_for_workers'
+  vacancy_for_workers_path = '/vacancyworkers'
 
   root :to => 'pages#home'
 
@@ -25,7 +28,7 @@ PersonnelAgency::Application.routes.draw do
   resources :skills
   resources :contactinformations
   resources :workers
-  resources :vacancies
+  resources :vacancies 
   resources :users
 
 end

@@ -4,8 +4,7 @@ class CreateWorkers < ActiveRecord::Migration
       t.string :name
       t.string :fname
       t.string :oname
-      t.integer :contactinfo
-      t.integer :status
+      t.references :status
       t.float :desiralesalary
       t.integer :skill
 

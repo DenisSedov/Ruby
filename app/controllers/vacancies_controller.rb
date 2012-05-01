@@ -1,49 +1,50 @@
 class VacanciesController < ApplicationController
-  # GET /vacancies
-  # GET /vacancies.json
+
   def index
-    @vacancies = Vacancy.all
+    #@vacancies = Vacancy.all
+    @vacancies = Vacancy.order("salary DESC")
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @vacancies }
     end
   end
 
-  # GET /vacancies/1
-  # GET /vacancies/1.json
   def show
     @vacancy = Vacancy.find(params[:id])
+    #@contactinformation = @vacancy.contactinformation
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.json { render json: @vacancy }
-    end
+   end
   end
 
-  # GET /vacancies/new
-  # GET /vacancies/new.json
-  def new
-    @vacancy = Vacancy.new
-
+  def new    
+    @vacancy = Vacancy.new()    
+    @vacancy.build_contactinformation
+    @contactinformation = @vacancy.contactinformation
+    
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.json { render json: @vacancy }
     end
+   
   end
 
-  # GET /vacancies/1/edit
   def edit
     @vacancy = Vacancy.find(params[:id])
+    @contactinformation = @vacancy.contactinformation
   end
 
-  # POST /vacancies
-  # POST /vacancies.json
   def create
-    @vacancy = Vacancy.new(params[:vacancy])
-
+    @vacancy = Vacancy.new(params[:vacancy])    
+    @contactinformation = @vacancy.contactinformation
+    #@vacancy.build_contactinformation
+    #@contactinformation.save
+       
     respond_to do |format|
-      if @vacancy.save
+      if @vacancy.save        
         format.html { redirect_to @vacancy, notice: 'Vacancy was successfully created.' }
         format.json { render json: @vacancy, status: :created, location: @vacancy }
       else
@@ -53,10 +54,14 @@ class VacanciesController < ApplicationController
     end
   end
 
-  # PUT /vacancies/1
-  # PUT /vacancies/1.json
   def update
-    @vacancy = Vacancy.find(params[:id])
+    #params[:vacancy][:skill_ids] || [] #
+
+    @vacancy = Vacancy.find(params[:id]) #
+    #@vacancy.build_contactinformation
+    #@contactinformation = @vacancy.contactinformation 
+    #@contactinformation.update
+    #@vacancy = Vacancy.find(current_vacancy) #
 
     respond_to do |format|
       if @vacancy.update_attributes(params[:vacancy])
@@ -69,10 +74,8 @@ class VacanciesController < ApplicationController
     end
   end
 
-  # DELETE /vacancies/1
-  # DELETE /vacancies/1.json
   def destroy
-    @vacancy = Vacancy.find(params[:id])
+    @vacancy = Vacancy.find(params[:id])    
     @vacancy.destroy
 
     respond_to do |format|
@@ -80,4 +83,5 @@ class VacanciesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

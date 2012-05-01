@@ -3,12 +3,13 @@ class CreateVacancies < ActiveRecord::Migration
     create_table :vacancies do |t|
       t.string :fullname
       t.date :addingdate
-      t.integer :validperiod
-      t.float :salary
-      t.integer :contactinfo
+      t.date :validperiod
+      t.float :salary      
       t.integer :desirableskill
 
       t.timestamps
     end
   end
+
+  
 end

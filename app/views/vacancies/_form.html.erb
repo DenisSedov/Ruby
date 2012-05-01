@@ -1,8 +1,7 @@
-<%= form_for(@vacancy) do |f| %>
+<%= form_for(@vacancy) do |vacancy_form| %>
   <% if @vacancy.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vacancy.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
-
       <ul>
       <% @vacancy.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,30 +11,28 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :fullname %><br />
-    <%= f.text_field :fullname %>
+    <%= vacancy_form.label :"Наименование организации" %><br />
+    <%= vacancy_form.text_field :fullname %>
   </div>
   <div class="field">
-    <%= f.label :addingdate %><br />
-    <%= f.date_select :addingdate %>
+    <%= vacancy_form.label :"Дата занесения в базу" %><br />
+    <%= vacancy_form.date_select :addingdate %>
   </div>
   <div class="field">
-    <%= f.label :validperiod %><br />
-    <%= f.number_field :validperiod %>
+    <%= vacancy_form.label :"Действительно до" %><br />
+    <%= vacancy_form.date_select :validperiod %>
   </div>
   <div class="field">
-    <%= f.label :salary %><br />
-    <%= f.text_field :salary %>
+    <%= vacancy_form.label :"Предлагаемая зарплата" %><br />
+    <%= vacancy_form.text_field :salary %>
   </div>
-  <div class="field">
-    <%= f.label :contactinfo %><br />
-    <%= f.number_field :contactinfo %>
+    <div class="actions">
+    <%= vacancy_form.submit %>
+  </div> 
+  <h1> Контактная информация </h1>
+  <div id="contactinformations">
+    <%= render :partial => "contactinformations/form", :locals => {:contactinformation => :contactinformation}  %>
   </div>
-  <div class="field">
-    <%= f.label :desirableskill %><br />
-    <%= f.number_field :desirableskill %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+ 
 <% end %>

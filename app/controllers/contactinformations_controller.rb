@@ -1,46 +1,45 @@
 class ContactinformationsController < ApplicationController
-  # GET /contactinformations
-  # GET /contactinformations.json
+
   def index
     @contactinformations = Contactinformation.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @contactinformations }
     end
   end
 
-  # GET /contactinformations/1
-  # GET /contactinformations/1.json
   def show
     @contactinformation = Contactinformation.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.json { render json: @contactinformation }
     end
   end
 
-  # GET /contactinformations/new
-  # GET /contactinformations/new.json
+
   def new
     @contactinformation = Contactinformation.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.json { render json: @contactinformation }
     end
   end
 
-  # GET /contactinformations/1/edit
   def edit
     @contactinformation = Contactinformation.find(params[:id])
   end
 
-  # POST /contactinformations
-  # POST /contactinformations.json
   def create
-    @contactinformation = Contactinformation.new(params[:contactinformation])
+    @contactinformation = Contactinformation.new(params[:contactinformation])    
+    #@vacancy = Vacancy.find(params[:contactinformation_id])      
+    #@contactinformation = @vacancy.contactinformations.create(params[:contactinfo])  
+    
+
+    #@contactinformation = @vacancy.contactinformations.create(params[:contactinformation])
+    #redirect_tog post_path(@vacancy)
 
     respond_to do |format|
       if @contactinformation.save
@@ -53,8 +52,6 @@ class ContactinformationsController < ApplicationController
     end
   end
 
-  # PUT /contactinformations/1
-  # PUT /contactinformations/1.json
   def update
     @contactinformation = Contactinformation.find(params[:id])
 
@@ -69,8 +66,6 @@ class ContactinformationsController < ApplicationController
     end
   end
 
-  # DELETE /contactinformations/1
-  # DELETE /contactinformations/1.json
   def destroy
     @contactinformation = Contactinformation.find(params[:id])
     @contactinformation.destroy

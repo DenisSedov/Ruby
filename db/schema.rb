@@ -11,20 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422070146) do
+ActiveRecord::Schema.define(:version => 20120422092404) do
 
   create_table "contactinformations", :force => true do |t|
     t.string   "telephone"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "contactinfo_id"
+    t.string   "contactinfo_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
-  create_table "skillgroups", :force => true do |t|
-    t.integer  "seniorid"
-    t.integer  "skill"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "skillgroups", :id => false, :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.integer  "skill_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "skills", :force => true do |t|
@@ -41,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20120422070146) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "pas"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -51,9 +53,8 @@ ActiveRecord::Schema.define(:version => 20120422070146) do
   create_table "vacancies", :force => true do |t|
     t.string   "fullname"
     t.date     "addingdate"
-    t.integer  "validperiod"
+    t.date     "validperiod"
     t.float    "salary"
-    t.integer  "contactinfo"
     t.integer  "desirableskill"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
@@ -63,8 +64,7 @@ ActiveRecord::Schema.define(:version => 20120422070146) do
     t.string   "name"
     t.string   "fname"
     t.string   "oname"
-    t.integer  "contactinfo"
-    t.integer  "status"
+    t.integer  "status_id"
     t.float    "desiralesalary"
     t.integer  "skill"
     t.datetime "created_at",     :null => false
